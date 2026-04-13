@@ -1,0 +1,1597 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MasterBitPC | Ingeniería, Automatización y Soluciones Industriales</title>
+  <meta name="description" content="Landing moderna para servicios de ingeniería, automatización, maquinado, diseño CAD/CAM y desarrollo de soluciones industriales." />
+  <style>
+    :root {
+      --bg: #0a0f14;
+      --bg-soft: #101820;
+      --panel: rgba(17, 25, 34, 0.78);
+      --panel-2: rgba(18, 28, 38, 0.92);
+      --line: rgba(148, 163, 184, 0.18);
+      --text: #e5eef6;
+      --muted: #9fb0bf;
+      --primary: #00c2ff;
+      --primary-2: #6ee7ff;
+      --accent: #7cffa1;
+      --warning: #ffcb6b;
+      --danger: #ff6b6b;
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --max: 1180px;
+      --nav-h: 82px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(0, 194, 255, 0.14), transparent 0 28%),
+        radial-gradient(circle at 85% 20%, rgba(124, 255, 161, 0.09), transparent 0 22%),
+        linear-gradient(180deg, #081018 0%, #0b1118 28%, #0a0f14 100%);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,.95));
+      opacity: .38;
+      z-index: 0;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button, input, select, textarea { font: inherit; }
+
+    .container {
+      width: min(var(--max), calc(100% - 2rem));
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section {
+      padding: 90px 0;
+      position: relative;
+    }
+
+    .section-title {
+      font-size: clamp(1.9rem, 4vw, 3rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin: 0 0 14px;
+    }
+
+    .section-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: .65rem;
+      padding: .55rem .9rem;
+      border: 1px solid rgba(110, 231, 255, .22);
+      background: rgba(0, 194, 255, .08);
+      border-radius: 999px;
+      color: var(--primary-2);
+      font-size: .88rem;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      font-size: 1.06rem;
+      max-width: 760px;
+      line-height: 1.75;
+      margin: 0;
+    }
+
+    .nav-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(16px);
+      background: rgba(8, 12, 17, 0.74);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .nav {
+      min-height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: .9rem;
+      font-weight: 800;
+      letter-spacing: -.03em;
+    }
+
+    .brand-mark {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      background:
+        linear-gradient(135deg, rgba(0,194,255,.95), rgba(124,255,161,.8));
+      display: grid;
+      place-items: center;
+      color: #03131a;
+      box-shadow: 0 12px 30px rgba(0,194,255,.22);
+      font-size: 1.1rem;
+      font-weight: 900;
+    }
+
+    .brand small {
+      display: block;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: .72rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.15rem;
+      color: #dbe7f2;
+      font-size: .96rem;
+    }
+
+    .nav-links a {
+      position: relative;
+      opacity: .88;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -8px;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      transition: width .28s ease;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a:focus-visible::after { width: 100%; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .7rem;
+      min-height: 50px;
+      padding: 0 1.2rem;
+      border-radius: 16px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease, background .25s ease;
+      font-weight: 700;
+      letter-spacing: -.01em;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary {
+      color: #03131a;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      box-shadow: 0 20px 40px rgba(0, 194, 255, .24);
+    }
+
+    .btn-secondary {
+      color: var(--text);
+      border-color: rgba(255,255,255,.08);
+      background: rgba(255,255,255,.04);
+    }
+
+    .btn-ghost {
+      color: var(--primary-2);
+      border-color: rgba(110,231,255,.16);
+      background: rgba(0,194,255,.06);
+    }
+
+    .menu-btn {
+      display: none;
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+    }
+
+    .hero {
+      padding: 76px 0 48px;
+      min-height: calc(100vh - var(--nav-h));
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: clip;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.06fr .94fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .hero-copy {
+      max-width: 680px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: .55rem;
+      padding: .55rem .9rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.04);
+      color: #d7e9f5;
+      margin-bottom: 1.15rem;
+      font-size: .92rem;
+    }
+
+    .eyebrow-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 8px rgba(124,255,161,.08);
+      animation: pulse 1.8s infinite;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 5.8vw, 5.4rem);
+      line-height: .96;
+      letter-spacing: -.05em;
+      margin: 0;
+      text-wrap: balance;
+    }
+
+    .hero h1 .gradient {
+      background: linear-gradient(135deg, #ffffff, var(--primary-2), var(--accent));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      font-size: 1.12rem;
+      line-height: 1.8;
+      color: var(--muted);
+      margin: 1.25rem 0 1.8rem;
+      max-width: 640px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .9rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .hero-points {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem 1.3rem;
+      color: #dce8f3;
+      font-size: .98rem;
+    }
+
+    .hero-points span {
+      display: inline-flex;
+      align-items: center;
+      gap: .55rem;
+      color: #d7e9f5;
+    }
+
+    .hero-points span::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      box-shadow: 0 0 0 6px rgba(0,194,255,.08);
+    }
+
+    .hero-visual {
+      position: relative;
+      min-height: 620px;
+      display: grid;
+      place-items: center;
+    }
+
+    .orb, .orb-2, .orb-3 {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(16px);
+      opacity: .8;
+      animation: float 8s ease-in-out infinite;
+    }
+
+    .orb {
+      width: 180px; height: 180px; top: 2%; right: 10%;
+      background: rgba(0,194,255,.16);
+    }
+    .orb-2 {
+      width: 130px; height: 130px; left: 5%; bottom: 12%;
+      background: rgba(124,255,161,.13);
+      animation-delay: -2.4s;
+    }
+    .orb-3 {
+      width: 90px; height: 90px; right: 4%; bottom: 30%;
+      background: rgba(255,203,107,.11);
+      animation-delay: -1.2s;
+    }
+
+    .visual-shell {
+      position: relative;
+      width: min(100%, 560px);
+      aspect-ratio: 1 / 1.02;
+      border-radius: 34px;
+      border: 1px solid rgba(255,255,255,.08);
+      background:
+        radial-gradient(circle at top right, rgba(0,194,255,.12), transparent 35%),
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      padding: 24px;
+      backdrop-filter: blur(14px);
+    }
+
+    .visual-shell::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, transparent 0, rgba(255,255,255,.045) 50%, transparent 100%);
+      transform: translateX(-100%);
+      animation: scan 5.6s linear infinite;
+    }
+
+    .panel-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      position: relative;
+      z-index: 1;
+    }
+
+    .panel-title { font-weight: 700; }
+    .panel-sub { color: var(--muted); font-size: .9rem; margin-top: .2rem; }
+
+    .status-pill {
+      padding: .55rem .8rem;
+      border-radius: 999px;
+      border: 1px solid rgba(124,255,161,.2);
+      background: rgba(124,255,161,.09);
+      color: #c9ffd8;
+      font-size: .88rem;
+      white-space: nowrap;
+    }
+
+    .dashboard {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 16px;
+      margin-top: 18px;
+      height: calc(100% - 88px);
+    }
+
+    .card {
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,.08);
+      background: var(--panel);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.02);
+    }
+
+    .chart-card {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 330px;
+    }
+
+    .micro-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .micro {
+      padding: 14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.035);
+      border: 1px solid rgba(255,255,255,.04);
+    }
+
+    .micro strong {
+      display: block;
+      font-size: 1.15rem;
+      margin-bottom: 4px;
+    }
+
+    .micro span {
+      color: var(--muted);
+      font-size: .87rem;
+    }
+
+    .bars {
+      height: 180px;
+      display: flex;
+      align-items: end;
+      gap: 14px;
+      padding: 8px 0 2px;
+    }
+
+    .bar-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .bar {
+      width: 100%;
+      border-radius: 14px 14px 8px 8px;
+      background: linear-gradient(180deg, rgba(110,231,255,.95), rgba(0,194,255,.26));
+      box-shadow: inset 0 -10px 24px rgba(0,0,0,.18);
+      animation: rise 1.1s ease both;
+      transform-origin: bottom;
+    }
+
+    .bar-col:nth-child(2) .bar { animation-delay: .12s; }
+    .bar-col:nth-child(3) .bar { animation-delay: .24s; }
+    .bar-col:nth-child(4) .bar { animation-delay: .36s; }
+    .bar-col:nth-child(5) .bar { animation-delay: .48s; }
+
+    .bar-label { color: var(--muted); font-size: .82rem; }
+
+    .mini-panel {
+      padding: 18px;
+      display: grid;
+      gap: 14px;
+      align-content: start;
+    }
+
+    .mini-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .mini-item {
+      padding: 14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.035);
+      border: 1px solid rgba(255,255,255,.04);
+    }
+
+    .mini-item strong { display: block; margin-bottom: 4px; }
+    .mini-item span { color: var(--muted); font-size: .9rem; line-height: 1.5; }
+
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: 36px;
+    }
+
+    .trust-card {
+      padding: 22px;
+      background: rgba(255,255,255,.035);
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .trust-card strong {
+      font-size: clamp(1.7rem, 4vw, 2.4rem);
+      display: block;
+      margin-bottom: 8px;
+      letter-spacing: -.04em;
+    }
+
+    .trust-card span {
+      color: var(--muted);
+      line-height: 1.55;
+      display: block;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 40px;
+    }
+
+    .service-card {
+      position: relative;
+      padding: 26px;
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,.07);
+      background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.02));
+      overflow: hidden;
+      transition: transform .28s ease, border-color .28s ease, box-shadow .28s ease;
+    }
+
+    .service-card::before {
+      content: "";
+      position: absolute;
+      inset: auto -20% -45% auto;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,194,255,.18), transparent 60%);
+      pointer-events: none;
+    }
+
+    .service-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(110,231,255,.18);
+      box-shadow: var(--shadow);
+    }
+
+    .service-icon {
+      width: 58px;
+      height: 58px;
+      display: grid;
+      place-items: center;
+      border-radius: 18px;
+      background: rgba(0,194,255,.1);
+      border: 1px solid rgba(110,231,255,.16);
+      font-size: 1.4rem;
+      margin-bottom: 18px;
+    }
+
+    .service-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.22rem;
+      letter-spacing: -.02em;
+    }
+
+    .service-card p {
+      color: var(--muted);
+      line-height: 1.72;
+      margin: 0 0 16px;
+    }
+
+    .service-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .55rem;
+    }
+
+    .tag {
+      padding: .42rem .7rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.06);
+      color: #d7e9f5;
+      font-size: .84rem;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: .92fr 1.08fr;
+      gap: 22px;
+      align-items: stretch;
+      margin-top: 40px;
+    }
+
+    .process-card,
+    .industries-card,
+    .contact-card,
+    .requirements-card {
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .process-card {
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 18px;
+      position: relative;
+      margin-top: 10px;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      top: 14px;
+      bottom: 14px;
+      left: 15px;
+      width: 2px;
+      background: linear-gradient(180deg, rgba(0,194,255,.5), rgba(124,255,161,.25));
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 46px 1fr;
+      gap: 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-index {
+      width: 32px;
+      height: 32px;
+      margin-top: 3px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: #04131a;
+      font-weight: 800;
+      box-shadow: 0 10px 22px rgba(0,194,255,.24);
+    }
+
+    .step h4 {
+      margin: 0 0 6px;
+      font-size: 1.05rem;
+    }
+
+    .step p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.72;
+    }
+
+    .industries-card {
+      padding: 30px;
+    }
+
+    .industry-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .industry {
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.035);
+      border: 1px solid rgba(255,255,255,.06);
+    }
+
+    .industry strong { display: block; margin-bottom: 8px; }
+    .industry span { color: var(--muted); line-height: 1.55; }
+
+    .contact-zone {
+      display: grid;
+      grid-template-columns: .88fr 1.12fr;
+      gap: 20px;
+      margin-top: 42px;
+    }
+
+    .contact-card {
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .contact-block {
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.035);
+      border: 1px solid rgba(255,255,255,.05);
+    }
+
+    .contact-block strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 1.02rem;
+    }
+
+    .contact-block p,
+    .contact-block a {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .requirements-card {
+      padding: 30px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .requirements-card::before {
+      content: "";
+      position: absolute;
+      inset: auto auto -120px -120px;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(124,255,161,.1), transparent 60%);
+      pointer-events: none;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: .55rem;
+    }
+
+    .field.full { grid-column: 1 / -1; }
+
+    .field label {
+      font-size: .92rem;
+      color: #dbe8f2;
+      font-weight: 600;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      min-height: 54px;
+      padding: .95rem 1rem;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(6, 12, 17, 0.56);
+      color: var(--text);
+      outline: none;
+      transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease;
+    }
+
+    .field textarea {
+      min-height: 160px;
+      resize: vertical;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: rgba(110,231,255,.45);
+      box-shadow: 0 0 0 4px rgba(0,194,255,.12);
+      transform: translateY(-1px);
+    }
+
+    .helper {
+      color: var(--muted);
+      font-size: .85rem;
+      line-height: 1.55;
+      margin-top: .15rem;
+    }
+
+    .form-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: .9rem;
+      margin-top: 20px;
+    }
+
+    .form-note {
+      color: var(--muted);
+      font-size: .9rem;
+      line-height: 1.6;
+    }
+
+    .form-status {
+      margin-top: 16px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      display: none;
+      font-size: .95rem;
+    }
+
+    .form-status.success {
+      display: block;
+      background: rgba(124,255,161,.09);
+      border: 1px solid rgba(124,255,161,.16);
+      color: #d6ffe3;
+    }
+
+    .form-status.error {
+      display: block;
+      background: rgba(255,107,107,.08);
+      border: 1px solid rgba(255,107,107,.16);
+      color: #ffd9d9;
+    }
+
+    .summary-box {
+      margin-top: 20px;
+      padding: 20px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,.06);
+      background: rgba(255,255,255,.03);
+    }
+
+    .summary-box h4 {
+      margin: 0 0 12px;
+      font-size: 1rem;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px 16px;
+    }
+
+    .summary-item {
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(8, 14, 20, .56);
+      border: 1px solid rgba(255,255,255,.05);
+    }
+
+    .summary-item small {
+      color: var(--muted);
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .summary-item strong {
+      display: block;
+      line-height: 1.55;
+      word-break: break-word;
+    }
+
+    .footer {
+      padding: 34px 0 46px;
+      border-top: 1px solid rgba(255,255,255,.07);
+      color: var(--muted);
+    }
+
+    .footer-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .8s ease, transform .8s ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.1); opacity: .85; }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-16px); }
+    }
+
+    @keyframes rise {
+      from { transform: scaleY(.08); opacity: .25; }
+      to { transform: scaleY(1); opacity: 1; }
+    }
+
+    @keyframes scan {
+      0% { transform: translateX(-110%); }
+      100% { transform: translateX(120%); }
+    }
+
+    @media (max-width: 1080px) {
+      .hero-grid,
+      .split,
+      .contact-zone,
+      .dashboard {
+        grid-template-columns: 1fr;
+      }
+
+      .services-grid,
+      .trust-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hero-visual { min-height: 520px; }
+    }
+
+    @media (max-width: 860px) {
+      .nav-links {
+        position: fixed;
+        inset: calc(var(--nav-h) + 8px) 1rem auto 1rem;
+        padding: 1rem;
+        border-radius: 22px;
+        background: rgba(9, 14, 19, .97);
+        border: 1px solid rgba(255,255,255,.08);
+        box-shadow: var(--shadow);
+        flex-direction: column;
+        align-items: stretch;
+        transform: translateY(-16px);
+        opacity: 0;
+        pointer-events: none;
+        transition: .25s ease;
+      }
+
+      .nav-links.open {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .menu-btn { display: inline-grid; place-items: center; }
+      .desktop-cta { display: none; }
+
+      .services-grid,
+      .trust-grid,
+      .industry-list,
+      .form-grid,
+      .summary-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 46px;
+      }
+
+      .hero-visual { min-height: 460px; }
+      .visual-shell { padding: 18px; }
+      .micro-stats { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 580px) {
+      .container { width: min(var(--max), calc(100% - 1.1rem)); }
+      .section { padding: 72px 0; }
+      .hero h1 { font-size: clamp(2.2rem, 13vw, 3.8rem); }
+      .btn { width: 100%; }
+      .hero-actions { flex-direction: column; }
+      .brand span { font-size: .98rem; }
+      .footer-wrap { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav-wrap">
+    <div class="container nav">
+      <a class="brand" href="#inicio" aria-label="Ir al inicio">
+        <div class="brand-mark">MB</div>
+        <div>
+          <span>MasterBitPC</span>
+          <small>Ingeniería y automatización</small>
+        </div>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#servicios">Servicios</a>
+        <a href="#proceso">Proceso</a>
+        <a href="#sectores">Sectores</a>
+        <a href="#requerimientos">Requerimientos</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+
+      <div style="display:flex; align-items:center; gap:.8rem;">
+        <a class="btn btn-ghost desktop-cta" href="#requerimientos">Solicitar propuesta</a>
+        <button class="menu-btn" id="menuBtn" aria-label="Abrir menú">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal is-visible">
+          <div class="eyebrow"><span class="eyebrow-dot"></span> Soluciones industriales con enfoque comercial real</div>
+          <h1>
+            Ingeniería que <span class="gradient">resuelve, automatiza y vende confianza</span>
+          </h1>
+          <p>
+            Diseñamos y ejecutamos soluciones para automatización, maquinado, integración, diseño técnico y mejora de procesos.
+            Esta propuesta de página está pensada para atrapar clientes desde el primer scroll: clara, moderna, sobria y lista para recibir requerimientos formales por correo.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#requerimientos">Enviar requerimiento</a>
+            <a class="btn btn-secondary" href="#servicios">Ver capacidades</a>
+          </div>
+
+          <div class="hero-points">
+            <span>Diseño industrial moderno</span>
+            <span>Formulario estructurado para cotización</span>
+            <span>Preparada para GitHub Pages o hosting clásico</span>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal">
+          <div class="orb"></div>
+          <div class="orb-2"></div>
+          <div class="orb-3"></div>
+
+          <div class="visual-shell">
+            <div class="panel-top">
+              <div>
+                <div class="panel-title">Panel de soluciones</div>
+                <div class="panel-sub">Visibilidad técnica, comercial y operativa</div>
+              </div>
+              <div class="status-pill">Sistema activo</div>
+            </div>
+
+            <div class="dashboard">
+              <div class="card chart-card">
+                <div class="micro-stats">
+                  <div class="micro">
+                    <strong>CAD / CAM</strong>
+                    <span>Diseño y manufactura</span>
+                  </div>
+                  <div class="micro">
+                    <strong>CNC</strong>
+                    <span>Maquinado preciso</span>
+                  </div>
+                  <div class="micro">
+                    <strong>Control</strong>
+                    <span>Automatización industrial</span>
+                  </div>
+                </div>
+
+                <div class="bars" aria-hidden="true">
+                  <div class="bar-col">
+                    <div class="bar" style="height: 56%;"></div>
+                    <div class="bar-label">Diseño</div>
+                  </div>
+                  <div class="bar-col">
+                    <div class="bar" style="height: 74%;"></div>
+                    <div class="bar-label">Integración</div>
+                  </div>
+                  <div class="bar-col">
+                    <div class="bar" style="height: 88%;"></div>
+                    <div class="bar-label">CNC</div>
+                  </div>
+                  <div class="bar-col">
+                    <div class="bar" style="height: 68%;"></div>
+                    <div class="bar-label">Soporte</div>
+                  </div>
+                  <div class="bar-col">
+                    <div class="bar" style="height: 94%;"></div>
+                    <div class="bar-label">Entrega</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card mini-panel">
+                <div class="mini-item">
+                  <strong>Captación de clientes</strong>
+                  <span>Copys directos, CTA visibles y una estructura pensada para convertir visitas en solicitudes.</span>
+                </div>
+                <div class="mini-item">
+                  <strong>Imagen profesional</strong>
+                  <span>Estética industrial limpia, sin saturación visual ni apariencia de sitio improvisado.</span>
+                </div>
+                <div class="mini-item">
+                  <strong>Gestión de requerimientos</strong>
+                  <span>Formulario técnico-comercial para que el dueño o gestión reciban datos útiles y no correos vacíos del tipo “me interesa”.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-kicker reveal">Diagnóstico del sitio actual</div>
+        <h2 class="section-title reveal">Lo que hoy sí comunica y lo que te está costando clientes</h2>
+        <p class="section-subtitle reveal">
+          La página actual sí deja ver que MasterBitPC trabaja automatización, portafolio, cotizaciones y contacto, pero el problema es el empaque: se ve desactualizada, dispersa y con una jerarquía débil para convertir visitas en prospectos.
+        </p>
+
+        <div class="trust-grid">
+          <div class="trust-card reveal">
+            <strong>+ claridad</strong>
+            <span>El nuevo enfoque pone primero propuesta de valor, servicios, proceso y un CTA fuerte. Nada de mandar al visitante a bucear entre pestañas.</span>
+          </div>
+          <div class="trust-card reveal">
+            <strong>+ confianza</strong>
+            <span>Se elimina el look viejo de portal genérico y se cambia por una interfaz de ingeniería sobria, más seria y más vendible.</span>
+          </div>
+          <div class="trust-card reveal">
+            <strong>+ estructura</strong>
+            <span>El formulario captura tipo de proyecto, urgencia, presupuesto, alcance y datos del cliente. Eso ya huele a operación real, no a inbox improvisado.</span>
+          </div>
+          <div class="trust-card reveal">
+            <strong>+ conversión</strong>
+            <span>La navegación y el contenido están hechos para empujar a una sola acción útil: solicitar propuesta o enviar requerimiento.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="servicios">
+      <div class="container">
+        <div class="section-kicker reveal">Servicios</div>
+        <h2 class="section-title reveal">Una landing para vender ingeniería sin parecer folleto de 2013</h2>
+        <p class="section-subtitle reveal">
+          La idea es posicionarte como proveedor serio de soluciones técnicas, no solo como alguien que “hace de todo”. Aquí la oferta queda más clara y mejor empacada.
+        </p>
+
+        <div class="services-grid">
+          <article class="service-card reveal">
+            <div class="service-icon">⚙</div>
+            <h3>Automatización industrial</h3>
+            <p>Diseño e integración de sistemas de control, mejoras de proceso, tableros, sensores, actuadores y soluciones orientadas a eficiencia operativa.</p>
+            <div class="service-tags">
+              <span class="tag">PLC</span>
+              <span class="tag">Control</span>
+              <span class="tag">Integración</span>
+            </div>
+          </article>
+
+          <article class="service-card reveal">
+            <div class="service-icon">🧩</div>
+            <h3>Diseño mecánico y CAD/CAM</h3>
+            <p>Modelado técnico, rediseño de componentes, desarrollo de piezas funcionales y preparación de documentación para fabricación o validación.</p>
+            <div class="service-tags">
+              <span class="tag">CAD</span>
+              <span class="tag">CAM</span>
+              <span class="tag">Planos</span>
+            </div>
+          </article>
+
+          <article class="service-card reveal">
+            <div class="service-icon">🛠</div>
+            <h3>Maquinado de piezas CNC</h3>
+            <p>Fabricación de piezas con enfoque en precisión, repetibilidad y funcionalidad para proyectos industriales, académicos o prototipos de desarrollo.</p>
+            <div class="service-tags">
+              <span class="tag">CNC</span>
+              <span class="tag">Precisión</span>
+              <span class="tag">Prototipos</span>
+            </div>
+          </article>
+
+          <article class="service-card reveal">
+            <div class="service-icon">📐</div>
+            <h3>Desarrollo de proyectos a medida</h3>
+            <p>Soluciones completas desde la detección de necesidad hasta la implementación, incluyendo levantamiento, propuesta técnica y seguimiento.</p>
+            <div class="service-tags">
+              <span class="tag">Ingeniería</span>
+              <span class="tag">Levantamiento</span>
+              <span class="tag">Entrega</span>
+            </div>
+          </article>
+
+          <article class="service-card reveal">
+            <div class="service-icon">🔧</div>
+            <h3>Mejora continua</h3>
+            <p>Análisis de procesos, ajustes técnicos y propuestas de optimización para reducir tiempos muertos, errores repetitivos o tareas manuales innecesarias.</p>
+            <div class="service-tags">
+              <span class="tag">Optimización</span>
+              <span class="tag">OEE</span>
+              <span class="tag">ROI</span>
+            </div>
+          </article>
+
+          <article class="service-card reveal">
+            <div class="service-icon">📬</div>
+            <h3>Gestión de requerimientos</h3>
+            <p>Recepción ordenada de solicitudes técnicas mediante formulario con campos clave para cotización, revisión interna y respuesta comercial más rápida.</p>
+            <div class="service-tags">
+              <span class="tag">Cotización</span>
+              <span class="tag">Correo</span>
+              <span class="tag">Formato</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="proceso">
+      <div class="container">
+        <div class="section-kicker reveal">Proceso</div>
+        <h2 class="section-title reveal">Cómo convierte esta página una visita en una oportunidad real</h2>
+        <p class="section-subtitle reveal">
+          El visitante entiende rápido qué haces, dónde aportas valor y cómo iniciar una solicitud formal. Sin rodeos, sin menús muertos, sin texto gritón en mayúsculas por todos lados.
+        </p>
+
+        <div class="split">
+          <div class="process-card reveal">
+            <div class="timeline">
+              <div class="step">
+                <div class="step-index">1</div>
+                <div>
+                  <h4>Impacto visual y posicionamiento</h4>
+                  <p>Hero limpio, mensaje directo y estética industrial moderna para que el visitante sienta que está frente a una empresa capaz, no frente a un sitio olvidado en una carpeta vieja.</p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-index">2</div>
+                <div>
+                  <h4>Presentación clara de capacidades</h4>
+                  <p>Se muestran servicios concretos y entendibles. Eso baja la confusión y sube la probabilidad de que el cliente identifique rápido si tú resuelves su problema.</p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-index">3</div>
+                <div>
+                  <h4>Captura formal del requerimiento</h4>
+                  <p>El formulario pide empresa, contacto, tipo de proyecto, urgencia, presupuesto, plazo objetivo y descripción. Gestión recibe algo útil; milagro industrial.</p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-index">4</div>
+                <div>
+                  <h4>Seguimiento comercial más rápido</h4>
+                  <p>Al llegar mejor estructurada la solicitud, el dueño o el departamento de gestión pueden revisar, clasificar y responder sin perder tiempo descifrando mensajes incompletos.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="industries-card reveal" id="sectores">
+            <h3 style="margin:0 0 10px; font-size:1.55rem; letter-spacing:-.03em;">Sectores donde este enfoque encaja bien</h3>
+            <p class="section-subtitle" style="max-width:none;">
+              El diseño apunta a clientes que valoran capacidad técnica, cumplimiento y claridad: industria, manufactura, mantenimiento, educación técnica y desarrollo de prototipos.
+            </p>
+
+            <div class="industry-list">
+              <div class="industry">
+                <strong>Manufactura</strong>
+                <span>Mejoras de proceso, automatización, maquinado y soporte a líneas productivas.</span>
+              </div>
+              <div class="industry">
+                <strong>Mantenimiento</strong>
+                <span>Adaptaciones, refacciones, rediseños, tableros y proyectos correctivos o preventivos.</span>
+              </div>
+              <div class="industry">
+                <strong>Ingeniería aplicada</strong>
+                <span>Diseño funcional, validación de conceptos y documentación técnica para ejecución.</span>
+              </div>
+              <div class="industry">
+                <strong>Escuelas y talleres</strong>
+                <span>Proyectos de formación, prototipos y piezas para prácticas, concursos o investigación.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="requerimientos">
+      <div class="container">
+        <div class="section-kicker reveal">Formulario de requerimientos</div>
+        <h2 class="section-title reveal">Listo para que gestión reciba solicitudes y dirección tenga copia</h2>
+        <p class="section-subtitle reveal">
+          Esta versión ya viene orientada a que el correo principal lo reciba gestión y que dirección o supervisión queden en copia. Solo reemplaza los correos reales en el script y queda listo para operar.
+        </p>
+
+        <div class="contact-zone">
+          <aside class="contact-card reveal" id="contacto">
+            <div>
+              <h3 style="margin:0 0 10px; font-size:1.45rem; letter-spacing:-.03em;">Contacto y gestión</h3>
+              <p class="section-subtitle" style="max-width:none;">
+                Aquí defines el correo principal de gestión, el correo que irá en copia para dirección o supervisión, teléfono directo, WhatsApp y horarios de atención.
+              </p>
+            </div>
+
+            <div class="contact-block">
+              <strong>Correo comercial</strong>
+              <a href="mailto:gestion@masterbitpc.com">gestion@masterbitpc.com</a>
+            </div>
+
+            <div class="contact-block">
+              <strong>Atención técnica</strong>
+              <a href="mailto:proyectos@masterbitpc.com">proyectos@masterbitpc.com</a>
+            </div>
+
+            <div class="contact-block">
+              <strong>Copia a dirección</strong>
+              <a href="mailto:direccion@masterbitpc.com">direccion@masterbitpc.com</a>
+            </div>
+
+            <div class="contact-block">
+              <strong>WhatsApp / Teléfono</strong>
+              <a href="https://wa.me/526860000000" target="_blank" rel="noopener noreferrer">+52 686 000 0000</a>
+            </div>
+
+            <div class="contact-block">
+              <strong>Qué revisar antes de responder</strong>
+              <p>Tipo de necesidad, alcance, urgencia, plazo, presupuesto y descripción técnica. Menos ida y vuelta, más velocidad para cotizar.</p>
+            </div>
+          </aside>
+
+          <section class="requirements-card reveal">
+            <form id="requirementsForm" novalidate>
+              <input type="hidden" name="source_page" value="Landing MasterBitPC - Requerimientos" />
+              <input type="hidden" name="submission_type" value="Solicitud de proyecto / cotización" />
+
+              <div class="form-grid">
+                <div class="field">
+                  <label for="empresa">Empresa o cliente</label>
+                  <input id="empresa" name="empresa" type="text" placeholder="Ej. Planta XYZ / Juan Pérez" required />
+                </div>
+
+                <div class="field">
+                  <label for="contactoNombre">Nombre de contacto</label>
+                  <input id="contactoNombre" name="contacto" type="text" placeholder="Nombre completo" required />
+                </div>
+
+                <div class="field">
+                  <label for="correo">Correo electrónico</label>
+                  <input id="correo" name="correo" type="email" placeholder="cliente@empresa.com" required />
+                </div>
+
+                <div class="field">
+                  <label for="telefono">Teléfono</label>
+                  <input id="telefono" name="telefono" type="tel" placeholder="686 000 0000" required />
+                </div>
+
+                <div class="field">
+                  <label for="tipoProyecto">Tipo de proyecto</label>
+                  <select id="tipoProyecto" name="tipo_proyecto" required>
+                    <option value="">Selecciona una opción</option>
+                    <option>Automatización industrial</option>
+                    <option>Diseño CAD/CAM</option>
+                    <option>Maquinado CNC</option>
+                    <option>Mejora de proceso</option>
+                    <option>Desarrollo de prototipo</option>
+                    <option>Mantenimiento / rediseño</option>
+                    <option>Otro</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="urgencia">Nivel de urgencia</label>
+                  <select id="urgencia" name="urgencia" required>
+                    <option value="">Selecciona una opción</option>
+                    <option>Alta - Lo antes posible</option>
+                    <option>Media - Este mes</option>
+                    <option>Baja - Solo exploración</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="presupuesto">Presupuesto estimado</label>
+                  <select id="presupuesto" name="presupuesto" required>
+                    <option value="">Selecciona una opción</option>
+                    <option>Menos de $10,000 MXN</option>
+                    <option>$10,000 - $50,000 MXN</option>
+                    <option>$50,000 - $150,000 MXN</option>
+                    <option>Más de $150,000 MXN</option>
+                    <option>Por definir</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="plazo">Plazo objetivo</label>
+                  <input id="plazo" name="plazo_objetivo" type="text" placeholder="Ej. 3 semanas / antes del 30 de mayo" />
+                </div>
+
+                <div class="field full">
+                  <label for="descripcion">Descripción del requerimiento</label>
+                  <textarea id="descripcion" name="descripcion" placeholder="Describe el problema, necesidad, alcance esperado, materiales, condiciones de operación o cualquier detalle técnico importante." required></textarea>
+                  <div class="helper">Entre más claro llegue esto, más rápido se revisa y mejor sale la propuesta.</div>
+                </div>
+              </div>
+
+              <div class="summary-box">
+                <h4>Vista previa del requerimiento</h4>
+                <div class="summary-grid" id="summaryGrid">
+                  <div class="summary-item"><small>Empresa o cliente</small><strong data-summary="empresa">—</strong></div>
+                  <div class="summary-item"><small>Contacto</small><strong data-summary="contacto">—</strong></div>
+                  <div class="summary-item"><small>Correo</small><strong data-summary="correo">—</strong></div>
+                  <div class="summary-item"><small>Teléfono</small><strong data-summary="telefono">—</strong></div>
+                  <div class="summary-item"><small>Tipo de proyecto</small><strong data-summary="tipo_proyecto">—</strong></div>
+                  <div class="summary-item"><small>Urgencia</small><strong data-summary="urgencia">—</strong></div>
+                  <div class="summary-item"><small>Presupuesto</small><strong data-summary="presupuesto">—</strong></div>
+                  <div class="summary-item"><small>Plazo objetivo</small><strong data-summary="plazo_objetivo">—</strong></div>
+                  <div class="summary-item" style="grid-column:1 / -1;"><small>Descripción</small><strong data-summary="descripcion">—</strong></div>
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button class="btn btn-primary" type="submit">Enviar requerimiento</button>
+                <button class="btn btn-secondary" type="button" id="fillDemo">Cargar ejemplo</button>
+                <div class="form-note">La landing ya viene preparada para FormSubmit. Solo cambia en el script el correo principal de gestión y el correo en copia para dirección.</div>
+              </div>
+
+              <div id="formStatus" class="form-status" role="status" aria-live="polite"></div>
+            </form>
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-wrap">
+      <div>© 2026 MasterBitPC. Ingeniería, automatización y soluciones industriales.</div>
+      <div>Diseño moderno orientado a conversión y captura formal de requerimientos.</div>
+    </div>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const navLinks = document.getElementById('navLinks');
+    const brandLogo = document.getElementById('brandLogo');
+    const brandMark = document.getElementById('brandMark');
+
+    if (brandLogo && brandMark) {
+      brandLogo.addEventListener('error', () => {
+        brandMark.classList.add('fallback');
+      });
+
+      brandLogo.addEventListener('load', () => {
+        brandMark.classList.remove('fallback');
+      });
+    }
+
+    menuBtn?.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+
+    navLinks?.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => navLinks.classList.remove('open'));
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.18 });
+
+    document.querySelectorAll('.reveal').forEach(el => {
+      if (!el.classList.contains('is-visible')) observer.observe(el);
+    });
+
+    const form = document.getElementById('requirementsForm');
+    const formStatus = document.getElementById('formStatus');
+    const fillDemoBtn = document.getElementById('fillDemo');
+
+    const summaryMap = {
+      empresa: document.querySelector('[data-summary="empresa"]'),
+      contacto: document.querySelector('[data-summary="contacto"]'),
+      correo: document.querySelector('[data-summary="correo"]'),
+      telefono: document.querySelector('[data-summary="telefono"]'),
+      tipo_proyecto: document.querySelector('[data-summary="tipo_proyecto"]'),
+      urgencia: document.querySelector('[data-summary="urgencia"]'),
+      presupuesto: document.querySelector('[data-summary="presupuesto"]'),
+      plazo_objetivo: document.querySelector('[data-summary="plazo_objetivo"]'),
+      descripcion: document.querySelector('[data-summary="descripcion"]')
+    };
+
+    function safeValue(value) {
+      return value && String(value).trim() ? String(value).trim() : '—';
+    }
+
+    function updateSummary() {
+      const data = new FormData(form);
+      summaryMap.empresa.textContent = safeValue(data.get('empresa'));
+      summaryMap.contacto.textContent = safeValue(data.get('contacto'));
+      summaryMap.correo.textContent = safeValue(data.get('correo'));
+      summaryMap.telefono.textContent = safeValue(data.get('telefono'));
+      summaryMap.tipo_proyecto.textContent = safeValue(data.get('tipo_proyecto'));
+      summaryMap.urgencia.textContent = safeValue(data.get('urgencia'));
+      summaryMap.presupuesto.textContent = safeValue(data.get('presupuesto'));
+      summaryMap.plazo_objetivo.textContent = safeValue(data.get('plazo_objetivo'));
+      summaryMap.descripcion.textContent = safeValue(data.get('descripcion'));
+    }
+
+    form.addEventListener('input', updateSummary);
+    form.addEventListener('change', updateSummary);
+
+    fillDemoBtn.addEventListener('click', () => {
+      form.empresa.value = 'Planta Industrial del Norte';
+      form.contacto.value = 'Alejandro Flores';
+      form.correo.value = 'alejandro@empresa.com';
+      form.telefono.value = '686 123 4567';
+      form.tipoProyecto.value = 'Automatización industrial';
+      form.urgencia.value = 'Media - Este mes';
+      form.presupuesto.value = '$50,000 - $150,000 MXN';
+      form.plazo.value = '4 semanas';
+      form.descripcion.value = 'Necesitamos automatizar una estación de inspección con sensores, lógica de control y propuesta de mejora para reducir intervención manual.';
+      updateSummary();
+    });
+
+    updateSummary();
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      formStatus.className = 'form-status';
+      formStatus.textContent = '';
+
+      if (!form.reportValidity()) {
+        formStatus.className = 'form-status error';
+        formStatus.textContent = 'Revisa los campos obligatorios. El formulario no va a adivinar por ti.';
+        return;
+      }
+
+      const PRIMARY_RECIPIENT = 'gestion@masterbitpc.com';
+      const CC_RECIPIENTS = 'direccion@masterbitpc.com';
+      const FORM_ENDPOINT = `https://formsubmit.co/ajax/${PRIMARY_RECIPIENT}`;
+
+      if (PRIMARY_RECIPIENT.includes('masterbitpc.com') || CC_RECIPIENTS.includes('masterbitpc.com')) {
+        formStatus.className = 'form-status error';
+        formStatus.innerHTML = 'Aún falta reemplazar los correos reales. Busca en el script las constantes <strong>PRIMARY_RECIPIENT</strong> y <strong>CC_RECIPIENTS</strong>.';
+        return;
+      }
+
+      const formData = new FormData(form);
+      const empresa = safeValue(formData.get('empresa'));
+      const tipoProyecto = safeValue(formData.get('tipo_proyecto'));
+
+      formData.append('email', safeValue(formData.get('correo')));
+      formData.append('_subject', `Nuevo requerimiento web | ${empresa} | ${tipoProyecto}`);
+      formData.append('_cc', CC_RECIPIENTS);
+      formData.append('_template', 'table');
+      formData.append('_replyto', safeValue(formData.get('correo')));
+      formData.append('destino_principal', PRIMARY_RECIPIENT);
+      formData.append('copia_supervision', CC_RECIPIENTS);
+      formData.append('canal', 'Landing MasterBitPC');
+
+      const button = form.querySelector('button[type="submit"]');
+      const originalText = button.textContent;
+      button.disabled = true;
+      button.textContent = 'Enviando...';
+
+      try {
+        const response = await fetch(FORM_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: formData
+        });
+
+        if (!response.ok) throw new Error('No se pudo enviar el formulario');
+
+        form.reset();
+        updateSummary();
+        formStatus.className = 'form-status success';
+        formStatus.textContent = 'Requerimiento enviado correctamente. Gestión lo recibe como correo principal y dirección queda en copia.';
+      } catch (error) {
+        formStatus.className = 'form-status error';
+        formStatus.textContent = 'Falló el envío. Revisa los correos configurados, la confirmación del servicio y la conexión del formulario.';
+      } finally {
+        button.disabled = false;
+        button.textContent = originalText;
+      }
+    });
+  </script>
+</body>
+</html>
